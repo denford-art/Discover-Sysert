@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_routes">
+
+    <fragment
+        android:id="@+id/navigation_routes"
+        android:name="com.denisdedov.discoversysert.view.RoutesFragment"
+        android:label="@string/routes"
+        tools:layout="@layout/fragment_routes" >
+        <action
+            android:id="@+id/action_navigation_routes_to_aboutFirstRouteFragment"
+            app:destination="@id/aboutFirstRouteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.denisdedov.discoversysert.view.MapFragment"
+        android:label="@string/map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.denisdedov.discoversysert.view.MoreFragment"
+        android:label="@string/more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/aboutFirstRouteFragment"
+        android:name="com.denisdedov.discoversysert.view.firstroute.AboutFirstRouteFragment"
+        android:label="@string/aboute_rout"
+        tools:layout="@layout/fragment_about_first_route" >
+        <action
+            android:id="@+id/action_aboutFirstRouteFragment_to_firstRouteFragment"
+            app:destination="@id/firstRouteFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/firstRouteFragment"
+        android:name="com.denisdedov.discoversysert.view.firstroute.FirstRouteFragment"
+        android:label="@string/first_route"
+        tools:layout="@layout/fragment_first_route" >
+        <action
+            android:id="@+id/action_firstRouteFragment_to_navigation_routes2"
+            app:destination="@id/navigation_routes"
+            />
+    </fragment>
+</navigation>

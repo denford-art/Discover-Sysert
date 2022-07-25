@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_routes"
+        android:title="Маршруты"
+        android:icon="@drawable/ic_routes"/>
+
+    <item
+        android:id="@+id/navigation_map"
+        android:title="Карта"
+        android:icon="@drawable/ic_map"/>
+
+    <item
+        android:id="@+id/navigation_more"
+        android:title="Подробнее"
+        android:icon="@drawable/ic_more"/>
+
+</menu>
