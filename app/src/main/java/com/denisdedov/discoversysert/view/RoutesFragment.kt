@@ -5,25 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.denisdedov.discoversysert.R
+import com.denisdedov.discoversysert.databinding.FragmentRoutesBinding
+import com.denisdedov.discoversysert.model.routes.Fact
+import com.denisdedov.discoversysert.model.routes.FactsAdapter
+import com.denisdedov.discoversysert.model.routes.RoutesAdapter
 
 class RoutesFragment : Fragment() {
+
+    lateinit var binding: FragmentRoutesBinding
+    private val factAdapter: FactsAdapter = FactsAdapter()
+    private val routeAdapter: RoutesAdapter = RoutesAdapter()
+    private val imgIdList = listOf(
+        R.drawable.temple,
+        R.drawable.temple,
+        R.drawable.temple,
+        R.drawable.temple,
+        R.drawable.temple,
+    )
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_routes, container, false)
+
+        binding = FragmentRoutesBinding.inflate(inflater, container, false)
+        initFacts()
+
+        binding.clFirstRoute.setOnClickListener {
+            findNavController().navigate(R.id.aboutFirstRouteFragment, null)
+        }
+
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val btn_route: Button = view.findViewById(R.id.btn_route)
-        btn_route.setOnClickListener {
-            findNavController().navigate(R.id.aboutFirstRouteFragment, null)
+    private fun initFacts() {
+        binding.apply {
+            rvFacts.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            rvFacts.adapter = factAdapter
+            for(img in imgIdList){
+                val fact = Fact(img, "Занимательный факт")
+                factAdapter.addFact(fact)
+            }
         }
     }
 

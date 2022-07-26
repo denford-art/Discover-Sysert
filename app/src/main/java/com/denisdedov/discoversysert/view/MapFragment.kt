@@ -26,8 +26,6 @@ class MapFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        MapKitFactory.setApiKey(apiKey)
-        MapKitFactory.initialize(activity)
         binding = FragmentMapBinding.inflate(inflater, container, false)
 
         mapView = binding.mapViewMain
@@ -44,8 +42,9 @@ class MapFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        MapKitFactory.setApiKey(apiKey)
+        MapKitFactory.initialize(activity)
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onStop() {

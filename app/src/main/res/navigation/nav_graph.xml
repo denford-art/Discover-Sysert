@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/aboutFirstRouteFragment"
         android:name="com.denisdedov.discoversysert.view.firstroute.AboutFirstRouteFragment"
-        android:label="@string/aboute_rout"
+        android:label="@string/about_rout"
         tools:layout="@layout/fragment_about_first_route" >
         <action
             android:id="@+id/action_aboutFirstRouteFragment_to_firstRouteFragment"
@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/firstRouteFragment"
         android:name="com.denisdedov.discoversysert.view.firstroute.FirstRouteFragment"
-        android:label="@string/first_route"
+        android:label="@string/name_of_first_route"
         tools:layout="@layout/fragment_first_route" >
         <action
             android:id="@+id/action_firstRouteFragment_to_navigation_routes2"

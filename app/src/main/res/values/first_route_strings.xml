@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_of_first_route">От истоков</string>
+    <string name="location">Исторический центр, Сысерть</string>
+    <string name="distance">500м</string>
+    <string name="time">1ч 10мин</string>
+    <string name="factory">Завод</string>
+    <string name="dam">Плотина</string>
+    <string name="temple">Храм</string>
+    <string name="manage">Управление</string>
+    <string name="hill">Гора</string>
+    <string name="manor">Усадьба</string>
+</resources>
