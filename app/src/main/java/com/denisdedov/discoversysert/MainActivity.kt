@@ -1,6 +1,8 @@
 package com.denisdedov.discoversysert
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.navigation.NavController
@@ -9,21 +11,24 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
 import com.denisdedov.discoversysert.databinding.ActivityMainBinding
+import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.mapview.MapView
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     lateinit var binding: ActivityMainBinding
 
+    private val apiKey: String = "92e9100b-adc2-4276-95d6-c5756940503d"
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        MapKitFactory.setApiKey(apiKey)
+        MapKitFactory.initialize(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //val bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
-
         val navHostFragment =
             supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment

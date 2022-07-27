@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_of_park_route">По следам Бажовских сказов</string>
+    <string name="location_park">Природный парк "Бажовские места", Сысерть</string>
+    <string name="distance_park">3,5км</string>
+    <string name="time_park">2ч 40мин</string>
+
+    <string name="bobr">Бобровые плотины</string>
+    <string name="bridge">Мост</string>
+    <string name="enter">Входная группа</string>
+    <string name="forest">Поля</string>
+    <string name="water_key">Потопаевский ключик</string>
+    <string name="lake">Тальков камень</string>
+    <string name="poloz">Золотой полоз</string>
+    <string name="stone">Таюткино зеркальце</string>
+
+    <string name="bobr_text">Бобровые плотины</string>
+    <string name="bridge_text">Мост</string>
+    <string name="enter_text">Входная группа</string>
+    <string name="forest_text">Поля</string>
+    <string name="water_key_text">Потопаевский ключик</string>
+    <string name="lake_text">Тальков камень</string>
+    <string name="poloz_text">Золотой полоз</string>
+    <string name="stone_text">Таюткино зеркальце</string>
+
+</resources>

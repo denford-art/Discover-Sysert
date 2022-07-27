@@ -28,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
     }
 
     buildFeatures {
@@ -41,6 +44,10 @@ dependencies {
 
     // Yandex Map Kit
     implementation 'com.yandex.android:maps.mobile:4.1.0-lite'
+
+    // Room
+    implementation("androidx.room:room-runtime:2.4.2")
+    annotationProcessor("androidx.room:room-compiler:2.4.2")
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'

@@ -1,5 +1,6 @@
 package com.denisdedov.discoversysert.view
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,13 +13,14 @@ import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.mapview.MapView
+import com.yandex.runtime.image.ImageProvider
+import com.yandex.runtime.ui_view.ViewProvider
 
 class MapFragment : Fragment() {
 
     private lateinit var binding: FragmentMapBinding
 
     private lateinit var mapView: MapView
-    private val apiKey: String = "92e9100b-adc2-4276-95d6-c5756940503d"
     private val startPoint: Point = Point(56.496373, 60.813429)
 
     override fun onCreateView(
@@ -33,18 +35,18 @@ class MapFragment : Fragment() {
         mapView.map
             .move(
                 CameraPosition(
-                    startPoint, 11.0f, 0.0f, 0.0f
+                    startPoint, 15.0f, 0.0f, 0.0f
                 ),
                 Animation(Animation.Type.SMOOTH, 0f),
                 null)
 
-        return binding.root
-    }
+        val mapOblect = mapView.map.mapObjects.addCollection()
+        val placeMark = mapOblect.addPlacemark(
+            startPoint,
+            ImageProvider.fromResource(activity, R.drawable.route_start)
+        )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        MapKitFactory.setApiKey(apiKey)
-        MapKitFactory.initialize(activity)
-        super.onCreate(savedInstanceState)
+        return binding.root
     }
 
     override fun onStop() {

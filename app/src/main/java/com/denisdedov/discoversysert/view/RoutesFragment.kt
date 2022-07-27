@@ -11,21 +11,18 @@ import com.denisdedov.discoversysert.R
 import com.denisdedov.discoversysert.databinding.FragmentRoutesBinding
 import com.denisdedov.discoversysert.model.routes.Fact
 import com.denisdedov.discoversysert.model.routes.FactsAdapter
-import com.denisdedov.discoversysert.model.routes.RoutesAdapter
 
 class RoutesFragment : Fragment() {
 
     lateinit var binding: FragmentRoutesBinding
     private val factAdapter: FactsAdapter = FactsAdapter()
-    private val routeAdapter: RoutesAdapter = RoutesAdapter()
     private val imgIdList = listOf(
-        R.drawable.temple,
-        R.drawable.temple,
-        R.drawable.temple,
-        R.drawable.temple,
-        R.drawable.temple,
+        R.drawable.history_temple,
+        R.drawable.park_lake,
+        R.drawable.gidromash,
+        R.drawable.history_temple,
+        R.drawable.history_temple,
     )
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
