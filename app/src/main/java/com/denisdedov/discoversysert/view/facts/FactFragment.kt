@@ -6,17 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.denisdedov.discoversysert.R
+import com.denisdedov.discoversysert.databinding.FragmentFactBinding
 
 class FactFragment : Fragment() {
+
+    lateinit var binding: FragmentFactBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_fact, container, false)
+        binding = FragmentFactBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) = FactFragment()
+        fun newInstance() = FactFragment()
     }
 }

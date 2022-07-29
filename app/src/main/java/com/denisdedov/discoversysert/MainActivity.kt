@@ -23,7 +23,11 @@ class MainActivity : AppCompatActivity() {
 
     private val apiKey: String = "92e9100b-adc2-4276-95d6-c5756940503d"
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
         MapKitFactory.setApiKey(apiKey)
         MapKitFactory.initialize(this)
         super.onCreate(savedInstanceState)
@@ -48,4 +52,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController,appBarConfiguration)
     }
+
+
 }

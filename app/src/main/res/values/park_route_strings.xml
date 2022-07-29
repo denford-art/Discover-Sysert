@@ -12,7 +12,9 @@
     <string name="water_key">Потопаевский ключик</string>
     <string name="lake">Тальков камень</string>
     <string name="poloz">Золотой полоз</string>
-    <string name="stone">Таюткино зеркальце</string>
+    <string name="cape">Мыс влюбленных</string>
+    <string name="mirror">Таюткино зеркальце</string>
+    <string name="stone">Камень</string>
 
     <string name="bobr_text">Бобровые плотины</string>
     <string name="bridge_text">Мост</string>
@@ -21,6 +23,9 @@
     <string name="water_key_text">Потопаевский ключик</string>
     <string name="lake_text">Тальков камень</string>
     <string name="poloz_text">Золотой полоз</string>
-    <string name="stone_text">Таюткино зеркальце</string>
+    <string name="cape_text">Мыс влюбленных</string>
+    <string name="mirror_text">Таюткино зеркальце</string>
+    <string name="stone_text">Камень</string>
+
 
 </resources>

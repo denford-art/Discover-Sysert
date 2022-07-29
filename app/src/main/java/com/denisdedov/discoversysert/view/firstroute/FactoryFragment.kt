@@ -11,6 +11,7 @@ import android.view.View.OnClickListener
 import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denisdedov.discoversysert.R
@@ -47,6 +48,14 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
     private var mTimer:TextView? = null
     private var seekBarHandler: SeekBarHandler? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                relaxResources(true)
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -158,7 +167,6 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
             pauseAudio()
         }
     }
-
 
     override fun onCompletion(mp: MediaPlayer?) {
         relaxResources(true)

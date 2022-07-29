@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mapbox.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mapView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.MapFragment">
-
-    <com.yandex.mapkit.mapview.MapView
-        android:id="@+id/mapView_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
+    mapbox:mapbox_cameraTargetLat="56.494141"
+    mapbox:mapbox_cameraTargetLng="60.810552"
+    mapbox:mapbox_cameraZoom="12.0"
+    />

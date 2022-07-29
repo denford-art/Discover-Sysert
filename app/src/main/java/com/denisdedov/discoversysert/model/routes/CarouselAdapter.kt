@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denisdedov.discoversysert.R
 import com.denisdedov.discoversysert.databinding.CarouselItemBinding
 
-class CarouselAdapter: RecyclerView.Adapter<CarouselAdapter.ImageHolder>() {
+class CarouselAdapter(): RecyclerView.Adapter<CarouselAdapter.ImageHolder>() {
+
     var imageList = ArrayList<Carousel>()
     class ImageHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = CarouselItemBinding.bind(item)
@@ -33,5 +34,5 @@ class CarouselAdapter: RecyclerView.Adapter<CarouselAdapter.ImageHolder>() {
         imageList.add(carousel)
         notifyDataSetChanged()
     }
-
 }
+

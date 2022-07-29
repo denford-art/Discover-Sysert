@@ -28,17 +28,18 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
+                <SeekBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/tv_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:maxLines="1" />
-
-                <SeekBar
-                    android:id="@+id/progressbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <ImageButton
                     android:id="@+id/play_pause_btn"
