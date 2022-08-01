@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".view.firstroute.AboutFirstRouteFragment"
     android:orientation="vertical">
 
@@ -28,14 +29,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/text_fish"
+                android:text="@string/about_history_string"
                 android:textAlignment="textStart" />
 
-            <com.yandex.mapkit.mapview.MapView
+            <com.mapbox.maps.MapView
                 android:id="@+id/mapview_about_history"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginVertical="10dp"/>
+                android:layout_marginVertical="10dp"
+                mapbox:mapbox_cameraTargetLat="56.494141"
+                mapbox:mapbox_cameraTargetLng="60.810552"
+                mapbox:mapbox_cameraZoom="15.0"
+                />
 
             <Button
                 android:id="@+id/btn_to_route"

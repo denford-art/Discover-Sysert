@@ -14,8 +14,20 @@
             android:id="@+id/action_navigation_routes_to_aboutFirstRouteFragment"
             app:destination="@id/aboutFirstRouteFragment" />
         <action
-            android:id="@+id/action_navigation_routes_to_factFragment"
-            app:destination="@id/factFragment" />
+            android:id="@+id/action_navigation_routes_to_parkFactFragment"
+            app:destination="@id/parkFactFragment" />
+        <action
+            android:id="@+id/action_navigation_routes_to_eiffelFactFragment"
+            app:destination="@id/eiffelFactFragment" />
+        <action
+            android:id="@+id/action_navigation_routes_to_empererFactFragment"
+            app:destination="@id/empererFactFragment" />
+        <action
+            android:id="@+id/action_navigation_routes_to_gidromashFactFragment"
+            app:destination="@id/gidromashFactFragment" />
+        <action
+            android:id="@+id/action_navigation_routes_to_damFactFragment"
+            app:destination="@id/damFactFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_map"
@@ -66,11 +78,6 @@
             app:destination="@id/manageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/factFragment"
-        android:name="com.denisdedov.discoversysert.view.facts.FactFragment"
-        android:label="fragment_fact"
-        tools:layout="@layout/fragment_fact" />
-    <fragment
         android:id="@+id/templeFragment"
         android:name="com.denisdedov.discoversysert.view.firstroute.TempleFragment"
         android:label="@string/temple"
@@ -100,4 +107,24 @@
         android:name="com.denisdedov.discoversysert.view.firstroute.ManageFragment"
         android:label="@string/manage"
         tools:layout="@layout/fragment_manage" />
+    <fragment
+        android:id="@+id/eiffelFactFragment"
+        android:name="com.denisdedov.discoversysert.view.facts.EiffelFactFragment"
+        android:label="@string/eiffel_tower_fact" />
+    <fragment
+        android:id="@+id/empererFactFragment"
+        android:name="com.denisdedov.discoversysert.view.facts.EmpererFactFragment"
+        android:label="@string/emperor_fact" />
+    <fragment
+        android:id="@+id/gidromashFactFragment"
+        android:name="com.denisdedov.discoversysert.view.facts.GidromashFactFragment"
+        android:label="@string/gibromash_fact" />
+    <fragment
+        android:id="@+id/parkFactFragment"
+        android:name="com.denisdedov.discoversysert.view.facts.ParkFactFragment"
+        android:label="@string/park_in_life_fact" />
+    <fragment
+        android:id="@+id/damFactFragment"
+        android:name="com.denisdedov.discoversysert.view.facts.DamFactFragment"
+        android:label="@string/dam_skillet_fact" />
 </navigation>

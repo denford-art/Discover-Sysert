@@ -1,20 +1,15 @@
 package com.denisdedov.discoversysert
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.room.Room
 import com.denisdedov.discoversysert.databinding.ActivityMainBinding
-import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.mapview.MapView
+import com.mapbox.maps.MapView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -25,11 +20,6 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
-        MapKitFactory.setApiKey(apiKey)
-        MapKitFactory.initialize(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

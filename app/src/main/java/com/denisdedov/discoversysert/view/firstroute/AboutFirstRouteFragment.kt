@@ -1,32 +1,31 @@
 package com.denisdedov.discoversysert.view.firstroute
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denisdedov.discoversysert.R
 import com.denisdedov.discoversysert.databinding.FragmentAboutFirstRouteBinding
+import com.denisdedov.discoversysert.model.CustomMap
+import com.denisdedov.discoversysert.model.MarkerForCM
 import com.denisdedov.discoversysert.model.routes.Carousel
 import com.denisdedov.discoversysert.model.routes.CarouselAdapter
-import com.yandex.mapkit.Animation
-import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.map.CameraPosition
-import com.yandex.mapkit.mapview.MapView
-import com.yandex.runtime.image.ImageProvider
+import com.mapbox.geojson.Point
+import com.mapbox.maps.MapView
+
 
 class AboutFirstRouteFragment : Fragment() {
 
     lateinit var binding: FragmentAboutFirstRouteBinding
+    private lateinit var customMap: CustomMap
+
     private val carouselAdapter: CarouselAdapter = CarouselAdapter()
     private val imgIdList = listOf(
         R.drawable.history_temple,
@@ -35,13 +34,16 @@ class AboutFirstRouteFragment : Fragment() {
     )
 
     private lateinit var mapView: MapView
-    private val factory: Point = Point(56.494141, 60.810552)
-    private val manor: Point = Point(56.494913, 60.808632)
-    private val manage: Point = Point(56.495156, 60.810196)
-    private val hill: Point = Point(56.489174, 60.811757)
-    private val dam: Point = Point(56.493897, 60.809109)
-    private val temple: Point = Point(56.495807, 60.809504)
+    val points = listOf<MarkerForCM>(
+        MarkerForCM(Point.fromLngLat(60.810552,56.494141), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.808632, 56.494913), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.810196, 56.495156), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.811757, 56.489174), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.809109, 56.493897), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.809504, 56.495807), "Завод")
+    )
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,67 +53,41 @@ class AboutFirstRouteFragment : Fragment() {
         initImg()
 
         mapView = binding.mapviewAboutHistory
+        customMap = CustomMap(mapView)
+        customMap.CreateCustomMap(getString(R.string.mapStyle), points)
 
-        mapView.map
-            .move(
-                CameraPosition(
-                    factory, 15.0f, 0.0f, 0.0f
-                ),
-                Animation(Animation.Type.SMOOTH, 0f),
-                null)
-
-        val mapOblect = mapView.map.mapObjects.addCollection()
-
-        // History route objects
-        getPlaceMark(factory, R.string.factory)
-        getPlaceMark(manage, R.string.manage)
-        getPlaceMark(manor, R.string.manor)
-        getPlaceMark(dam, R.string.dam)
-        getPlaceMark(hill, R.string.hill)
-        getPlaceMark(temple, R.string.temple)
+        mapView.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_MOVE -> binding.myview.requestDisallowInterceptTouchEvent(true)
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> binding.myview.requestDisallowInterceptTouchEvent(
+                    false
+                )
+            }
+            mapView.onTouchEvent(event)
+        }
 
         return binding.root
     }
 
 
-    fun getPlaceMark(point: Point, name: Int){
-        mapView.map.mapObjects.addCollection().addPlacemark(
-            point,
-            ImageProvider.fromBitmap(drawSimpleBitmap(getString(name)))
-        )
-    }
-
-
-    fun drawSimpleBitmap(name: String): Bitmap {
-        val picSize: Int = 90;
-        val bitmap: Bitmap = Bitmap.createBitmap(picSize, picSize, Bitmap.Config.ARGB_8888);
-        val canvas = Canvas(bitmap);
-        // отрисовка плейсмарка
-        val paint = Paint();
-        paint.setColor(Color.rgb(44, 120, 115));
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle((picSize / 2).toFloat(), (picSize / 2).toFloat(),
-            (picSize / 2).toFloat(), paint);
-        // отрисовка текста
-        paint.setColor(Color.WHITE);
-        paint.setAntiAlias(true);
-        paint.setTextSize(22F);
-        paint.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(name, (picSize / 2).toFloat(),
-            picSize / 2 - ((paint.descent() + paint.ascent()) / 2), paint);
-        return bitmap;
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
     }
 
     override fun onStop() {
-        mapView.onStop()
-        MapKitFactory.getInstance().onStop()
         super.onStop()
+        mapView.onStop()
     }
 
-    override fun onStart() {
-        super.onStart()
-        MapKitFactory.getInstance().onStart()
-        mapView.onStart()
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

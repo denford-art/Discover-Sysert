@@ -20,11 +20,11 @@ class RoutesFragment : Fragment() {
     lateinit var binding: FragmentRoutesBinding
 
     val facts = mutableListOf(
-        Fact(R.drawable.history_temple, "Занимательный факт 1", R.id.templeFragment),
-        Fact(R.drawable.park_lake, "Занимательный факт 2", R.id.templeFragment),
-        Fact(R.drawable.gidromash, "Занимательный факт 3", R.id.hillFragment),
-        Fact(R.drawable.history_dam_render, "Занимательный факт 4", R.id.damFragment),
-        Fact(R.drawable.history_factory_new, "Занимательный факт 5", R.id.factoryFragment),
+        Fact(R.drawable.history_temple, R.string.emperor_fact, R.id.empererFactFragment),
+        Fact(R.drawable.park_lake, R.string.park_in_life_fact, R.id.parkFactFragment),
+        Fact(R.drawable.gidromash, R.string.gibromash_fact, R.id.gidromashFactFragment),
+        Fact(R.drawable.history_dam_render, R.string.dam_skillet_fact, R.id.damFactFragment),
+        Fact(R.drawable.history_factory_new, R.string.eiffel_tower_fact, R.id.eiffelFactFragment),
     )
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class RoutesFragment : Fragment() {
         }
 
         val factRandom = facts.shuffled().first()
-        binding.tvTitle1.text = factRandom.title
+        binding.tvTitle1.text = getString(factRandom.title)
         binding.ivFactTitle1.setImageResource(factRandom.imageId)
         binding.clFact1.setOnClickListener {
             findNavController().navigate(factRandom.fragment, null)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dam_skillet_fact">Затопленные рабочие</string>
+    <string name="emperor_fact">Имератор был у нас</string>
+    <string name="park_in_life_fact">Бажов был в природном парке</string>
+    <string name="gibromash_fact">Наши продукты даже в америке</string>
+    <string name="eiffel_tower_fact">Эйфелева башня и Сысерть</string>
+
+    <string name="dam_skillet_fact_text">Затопленные рабочие</string>
+    <string name="emperor_fact_text">Имератор был у нас</string>
+    <string name="park_in_life_fact_text">Бажов был в природном парке</string>
+    <string name="gibromash_fact_text">Наши продукты даже в америке</string>
+    <string name="eiffel_tower_fact_text">Эйфелева башня и Сысерть</string>
+</resources>

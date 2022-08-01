@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".view.firstroute.AboutFirstRouteFragment"
     android:orientation="vertical">
 
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/text_fish"
+                android:text="@string/factory_text"
                 android:textAlignment="textStart" />
 
             <TextView
@@ -73,11 +74,15 @@
                 android:text="@string/map"
                 android:textSize="20sp"/>
 
-            <com.yandex.mapkit.mapview.MapView
-                android:id="@+id/mapview_factory"
+            <com.mapbox.maps.MapView
+                android:id="@+id/mapview_factory_history"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                mapbox:mapbox_cameraTargetLat="56.494141"
+                mapbox:mapbox_cameraTargetLng="60.810552"
+                mapbox:mapbox_cameraZoom="15.0"
+                />
         </LinearLayout>
     </ScrollView>
 

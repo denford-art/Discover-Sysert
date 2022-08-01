@@ -1,10 +1,12 @@
 package com.denisdedov.discoversysert.view.firstroute
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.PowerManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.View.OnClickListener
@@ -16,14 +18,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denisdedov.discoversysert.R
 import com.denisdedov.discoversysert.databinding.FragmentFactoryBinding
+import com.denisdedov.discoversysert.model.CustomMap
+import com.denisdedov.discoversysert.model.MarkerForCM
 import com.denisdedov.discoversysert.model.SeekBarHandler
 import com.denisdedov.discoversysert.model.routes.Carousel
 import com.denisdedov.discoversysert.model.routes.CarouselAdapter
-import com.yandex.mapkit.Animation
-import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.map.CameraPosition
-import com.yandex.mapkit.mapview.MapView
+import com.mapbox.geojson.Point
+import com.mapbox.maps.MapView
 import com.yandex.runtime.image.ImageProvider
 
 class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener,
@@ -39,8 +40,17 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
         R.drawable.history_factory_dirt,
     )
 
+    private lateinit var customMap: CustomMap
     private lateinit var mapView: MapView
-    private val startPoint: Point = Point(56.496373, 60.813429)
+    val points = listOf<MarkerForCM>(
+        MarkerForCM(Point.fromLngLat(60.810552,56.494141), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.808632, 56.494913), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.810196, 56.495156), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.811757, 56.489174), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.809109, 56.493897), "Завод"),
+        MarkerForCM(Point.fromLngLat(60.809504, 56.495807), "Завод")
+    )
+    val point: MarkerForCM = MarkerForCM(Point.fromLngLat(60.810552,56.494141), "Завод")
 
     private var mMediaPlayer: MediaPlayer? = null
     private var mPlayPauseButton: ImageButton? = null
@@ -57,6 +67,7 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
         })
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,19 +75,19 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
         binding = FragmentFactoryBinding.inflate(inflater, container, false)
         initImg()
 
-        mapView = binding.mapviewFactory
-        mapView.map
-            .move(
-                CameraPosition(
-                    startPoint, 15.0f, 0.0f, 0.0f
-                ),
-                Animation(Animation.Type.SMOOTH, 0f),
-                null)
-        val mapOblect = mapView.map.mapObjects.addCollection()
-        val placeMark = mapOblect.addPlacemark(
-            startPoint,
-            ImageProvider.fromResource(activity, R.drawable.route_start)
-        )
+        mapView = binding.mapviewFactoryHistory
+        customMap = CustomMap(mapView)
+        customMap.CreateCustomMap(getString(R.string.mapStyle), point)
+
+        mapView.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_MOVE -> binding.myview.requestDisallowInterceptTouchEvent(true)
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> binding.myview.requestDisallowInterceptTouchEvent(
+                    false
+                )
+            }
+            mapView.onTouchEvent(event)
+        }
 
         mSeekbar = binding.progressbar
         mSeekbar?.setOnSeekBarChangeListener(this)
@@ -198,16 +209,24 @@ class FactoryFragment : Fragment(), SeekBar.OnSeekBarChangeListener, MediaPlayer
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
     }
 
-    override fun onStop() {
-        mapView.onStop()
-        MapKitFactory.getInstance().onStop()
-        super.onStop()
-    }
-
     override fun onStart() {
         super.onStart()
-        MapKitFactory.getInstance().onStart()
         mapView.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
     }
 
     private fun initImg() {

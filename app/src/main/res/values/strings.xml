@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Узнай Сысерть</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiZmFzbW9nIiwiYSI6ImNsNjZ2dDU1NzAzYnUza280aHJwdGplcGYifQ.W5oEongEMCj5Kf0R2jrdQg</string>
+    <string name="mapStyle">mapbox://styles/fasmog/cl694wo4r000914pdidaf8wsq</string>
 
 
     <string name="routes">Маршруты</string>
